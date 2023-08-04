@@ -13,6 +13,23 @@ import com.mycompany.schoolmanagementsystem.controller.StudentManagementControll
 public class StudentRegisterForm extends javax.swing.JFrame {
 
     /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    private int id;
+    
+    /**
      * Creates new form StudentRegisterForm
      */
     public StudentRegisterForm() {
@@ -41,6 +58,7 @@ public class StudentRegisterForm extends javax.swing.JFrame {
         passwordField1 = new javax.swing.JPasswordField();
         submitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        updateBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +97,13 @@ public class StudentRegisterForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Student Register Form");
 
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,6 +139,8 @@ public class StudentRegisterForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(updateBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(submitButton)
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -146,7 +173,9 @@ public class StudentRegisterForm extends javax.swing.JFrame {
                     .addComponent(passwordJlabel)
                     .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(submitButton)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitButton)
+                    .addComponent(updateBtn))
                 .addContainerGap())
         );
 
@@ -178,6 +207,12 @@ public class StudentRegisterForm extends javax.swing.JFrame {
         StudentManagementController controller = StudentManagementController.getControllerObject();
         controller.getStudentFormData(this);
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        StudentManagementController controller = StudentManagementController.getControllerObject();
+        controller.getEditData(this.getId(), this);
+    }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +263,7 @@ public class StudentRegisterForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField1;
     private javax.swing.JLabel passwordJlabel;
     private javax.swing.JButton submitButton;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 
     /**

@@ -36,7 +36,7 @@ public class ViewStudentData extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "Name", "Address", "Country", "Email"
+                "id", "Name", "Address", "Country", "Email", "Action"
             }
         ));
         jScrollPane1.setViewportView(viewTable);

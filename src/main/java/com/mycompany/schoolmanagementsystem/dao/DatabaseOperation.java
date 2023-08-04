@@ -59,4 +59,43 @@ public class DatabaseOperation {
         }
         return list;
     }
+
+    public Student getById(int id) throws SQLException {
+        Connection con = DatabaseConnection.getDatabaseConnection();
+        String query = "Select * from student where id=?";
+        PreparedStatement st = con.prepareStatement(query);
+        st.setInt(1, id);
+        ResultSet row=st.executeQuery();
+        
+        Student student = new Student();
+        
+        if(row.next()){
+            
+            student.setName(row.getString("name"));
+            student.setAddress(row.getString("address"));
+            student.setCountry(row.getString("country"));
+            student.setEmail(row.getString("email"));
+            
+        }
+        return student;
+    }
+
+    public Student update(Student student, int id) throws SQLException {
+        Connection con = DatabaseConnection.getDatabaseConnection();
+        String update_query = "update student set name=?, address=?, country=?,email=? where id=?";
+        PreparedStatement st = con.prepareStatement(update_query);
+        st.setString (1, student.getName());
+        st.setString(2, student.getAddress());
+        st.setString(3, student.getCountry());
+        st.setString(4, student.getEmail());
+        st.setInt(5, id);
+        
+        int row = st.executeUpdate();
+        Student updateStudent=null;
+        if(row>=1){
+            updateStudent=this.getById(id);
+        }
+        return updateStudent;
+        
+    }
 }
